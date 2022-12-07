@@ -1,15 +1,15 @@
 <template>
-  <LoginView/>
+  <LoginComponent/>
 </template>
 
 <script>
-  import LoginView from '../views/LoginView.vue'
+  import LoginComponent from '../components/LoginComponent.vue'
 
   export default {
     name: 'Home',
 
     components: {
-      LoginView,
+      LoginComponent,
     },
   }
 </script>
