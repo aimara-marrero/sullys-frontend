@@ -61,7 +61,7 @@ export default {
       ],
       passwordRules: [
         (value) =>
-          value.length >= 5 || "Password must be at least 5 characters long",
+          value.length >= 3 || "Password must be at least 5 characters long",
       ],
       visible: false,
     };
