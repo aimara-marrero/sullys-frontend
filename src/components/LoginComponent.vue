@@ -9,7 +9,7 @@
                 <v-row justify="space-around" class="mb-12">
                   <v-avatar size="140">
                     <img
-                      src="../assets/images/istockphoto-186655818-612x612-removebg-preview.png"
+                      src="../assets/images/schoolIcon.png"
                       alt="John"
                     />
                   </v-avatar>
