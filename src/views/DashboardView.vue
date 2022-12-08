@@ -77,7 +77,6 @@
 
 
 
-import API from '../services/api.js';
 import PupilComponent from '../components/PupilsComponent.vue';
 
 export default {
@@ -132,11 +131,8 @@ export default {
       this.test.examenes = false
       this.test.curso = false
     },
-  },
-
-  async created() {
-    this.users = await API.getAllUser()
   }
+
 };
 </script>
   

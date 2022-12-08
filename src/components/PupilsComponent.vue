@@ -1,148 +1,273 @@
-
 <template>
-    <div>
-      <v-data-table
-        :headers="headers"
-        :items="desserts"
-        :sort-by.sync="sortBy"
-        :sort-desc.sync="sortDesc"
-        class="elevation-1"
-      ></v-data-table>
-      <div class="text-center pt-2">
-        <v-btn
-          color="primary"
-          class="mr-2"
-          @click="toggleOrder"
+  <div>
+  <v-data-table
+    :headers="headers"
+    :items="Usuarios"
+    sort-by="calories"
+    class="elevation-1"
+  >
+    <template v-slot:top>
+      <v-toolbar
+        flat
+      >
+        <v-toolbar-title>Padres</v-toolbar-title>
+        <v-divider
+          class="mx-4"
+          inset
+          vertical
+        ></v-divider>
+        <v-spacer></v-spacer>
+        <v-dialog
+          v-model="dialog"
+          max-width="800px"
         >
-          Toggle sort order
-        </v-btn>
-        <v-btn
-          color="primary"
-          @click="nextSort"
-        >
-          Sort next column
-        </v-btn>
-      </div>
-     
-    </div>
-  </template>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              color="primary"
+              dark
+              class="mb-2"
+              v-bind="attrs"
+              v-on="on"
+            >
+              Inserta padre
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">{{ formTitle }}</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.name"
+                      label="Nombre"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.lastName"
+                      label="Apellidos"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.email"
+                      label="Email"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.dni"
+                      label="DNI"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                    md="4"
+                  >
+                    <v-text-field
+                      v-model="editedItem.phone"
+                      label="Teléfono"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="editedItem.address"
+                      label="Dirección"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="close"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                color="blue darken-1"
+                text
+                @click="save"
+              >
+                Save
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogDelete" max-width="500px">
+          <v-card>
+            <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+    </template>
+    <template v-slot:item.actions="{ item }">
+      <v-icon
+        small
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+      <v-icon
+        small
+        @click="deleteItem(item)"
+      >
+        mdi-delete
+      </v-icon>
+    </template>
+    <template v-slot:no-data>
+      <v-btn
+        color="primary"
+        @click="initialize"
+      >
+        Reset
+      </v-btn>
+    </template>
+  </v-data-table>
+  <div><pre>{{Usuarios}}</pre></div>
+</div>
+</template>
 
 <script>
+import API from '../services/api.js';
   export default {
-    data () {
-      return {
-        sortBy: 'fat',
-        sortDesc: false,
-        headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'start',
-            value: 'name',
-          },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
+    data: () => ({
+      dialog: false,
+      dialogDelete: false,
+      headers: [
+        {
+          text: 'Nombre',
+          align: 'start',
+          sortable: false,
+          value: 'name',
+        },
+        { text: 'Apellidos', value: 'lastName' },
+        { text: 'Email', value: 'email' },
+        { text: 'DNI', value: 'dni' },
+        { text: 'Teléfono', value: 'phone' },
+        { text: 'Dirección', value: 'address' },
+        { text: 'Actions', value: 'actions', sortable: false }
+        
+      ],
+      Usuarios: [],
+      editedIndex: -1,
+      editedItem: {
+        name: '',
+        lastName:'',
+        email: '',
+        dni: '',
+        phone: '',
+        address: '',
+      },
+      defaultItem: {
+        name: '',
+        lastName:'',
+        email: '',
+        dni: '',
+        phone: '',
+        adress: '',
+      },
+     
+    }),
+    
+    computed: {
+      formTitle () {
+        return this.editedIndex === -1 ? 'Inserta Padre' : 'Edita Padre'
+      },
+    },
 
-      }
+    watch: {
+      dialog (val) {
+        val || this.close()
+      },
+      dialogDelete (val) {
+        val || this.closeDelete()
+      },
     },
+
+    created () {
+      this.initialize()
+    },
+
     methods: {
-      toggleOrder () {
-        this.sortDesc = !this.sortDesc
+     async initialize () {
+        this.Usuarios = await API.getAllUser()
       },
-      nextSort () {
-        let index = this.headers.findIndex(h => h.value === this.sortBy)
-        index = (index + 1) % this.headers.length
-        this.sortBy = this.headers[index].value
+
+      editItem (item) {
+        this.editedIndex = this.Usuarios.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        console.log(this.editedItem)
+        this.dialog = true
+      },
+
+      deleteItem (item) {
+        this.editedIndex = this.Usuarios.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialogDelete = true
+      },
+
+      deleteItemConfirm () {
+        this.Usuarios.splice(this.editedIndex, 1)
+        this.closeDelete()
+      },
+
+      close () {
+        this.dialog = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      closeDelete () {
+        this.dialogDelete = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      save () {
+        if (this.editedIndex > -1) {
+          Object.assign(this.Usuarios[this.editedIndex], this.editedItem)
+          console.log(this.editedItem)
+        } else {
+          this.Usuarios.push(this.editedItem)
+          console.log(this.editedItem)
+        }
+        this.close()
       },
     },
-    props: {
-        users: Array
-    }
   }
 </script>
 
