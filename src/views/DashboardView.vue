@@ -1,7 +1,12 @@
 <template>
     <div>
       <SidebarComponent />
-      <router-view/>
+      <div>users</div>
+      <div>padres</div>
+      <div>asignaturas</div>
+      <div>examenes</div>
+      <div>docentes</div>
+     
     </div>
   </template>
   
