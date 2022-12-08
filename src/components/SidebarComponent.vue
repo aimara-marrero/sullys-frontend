@@ -19,6 +19,7 @@
           <h2 class="green--text">Sullys</h2>
         </div>
       </v-img>
+      
       <v-divider></v-divider>
       <v-list>
         <v-list-item v-for="[icon, text] in links" :key="icon" link>

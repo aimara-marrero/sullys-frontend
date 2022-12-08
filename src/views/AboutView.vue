@@ -7,7 +7,7 @@
             <v-card-text>
               <v-row justify="space-around" class="mb-6 mt-6">
                 <v-img
-                  src="../assets/images/mision.png"
+                  src="../assets/images/meta.png"
                   alt="John"
                   max-height="100"
                   max-width="100"
