@@ -73,6 +73,8 @@
   
 <script>
 
+
+
 import API from '../services/api.js';
 import PupilComponent from '../components/PupilsComponent.vue';
 
