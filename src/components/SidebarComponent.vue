@@ -1,7 +1,7 @@
 
 
 <template>
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer app>
       <v-img
         height="140"
         class="pa-4"
@@ -36,7 +36,7 @@
   <script>
   export default {
     name: "Sidebar",
-    props: ["drawer"],
+  
     data() {
       return {
         links: [

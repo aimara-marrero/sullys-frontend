@@ -11,34 +11,17 @@
                     <img src="../assets/images/schoolIcon.png" alt="John" />
                   </v-avatar>
                 </v-row>
-                <v-text-field
-                  class="my-5"
-                  name="login"
-                  label="Login"
-                  type="text"
-                  outlined
-                  dense
-                  color="green"
-                ></v-text-field>
-                <v-text-field
-                  id="password"
-                  name="password"
-                  label="Password"
-                  type="password"
-                  :append-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
-                  @click:append="visible = !visible"
-                  outlined
-                  dense
-                  color="green"
-                ></v-text-field>
+                <v-text-field class="my-5" name="login" label="Login" type="text" v-model="newUser.email" outlined dense
+                  color="green"></v-text-field>
+                <v-text-field id="password" name="password" label="Password" type="password" v-model="newUser.password"
+                 :append-icon="visible ? 'mdi-eye' : 'mdi-eye-off'" @click:append="visible = !visible" outlined dense
+                  color="green"></v-text-field>
                 <p class="text-center my-5">¿Has olvidado tu contraseña?</p>
               </v-form>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-spacer
-                ><v-btn class="btn my-5" rounded large>Acceder</v-btn></v-spacer
-              >
+              <v-spacer><v-btn @click.prevent="loginUser()" class="btn my-5" rounded large>Acceder</v-btn></v-spacer>
             </v-card-actions>
           </v-flex>
         </v-layout>
@@ -47,10 +30,15 @@
   </v-app>
 </template>
 <script>
+import API from '../services/api.js';
 export default {
   data() {
     return {
-      emailRules: [
+      newUser: {
+        email: '',
+        password: ''
+      },
+      /*emailRules: [
         (value) => !!value || "Email Required.",
         (value) =>
           value.match(
@@ -61,9 +49,26 @@ export default {
         (value) =>
           value.length >= 3 || "Password must be at least 5 characters long",
       ],
+      */
       visible: false,
+
     };
   },
+  methods: {
+    async loginUser() {
+      try {
+        const response = await API.login(this.newUser)
+        if (response.error) {
+          alert('wrong username/password')
+        } else {
+
+          this.$router.push({ name: 'dashboard' })
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 };
 </script>
 
@@ -73,3 +78,4 @@ export default {
   color: #fdfdfd;
 }
 </style>
+

@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import HomeViewVue from '../views/HomeView.vue'
 import LoginViewVue from '../views/LoginView.vue'
 import DashboardView from '../views/DashboardView.vue'
-
+import { useAuthStore } from '../stores/store'
+import FaqView from '../views/FaqView.vue'
 
 
 Vue.use(VueRouter)
@@ -12,7 +13,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeViewVue
+    component: FaqView
   },
   {
     path: '/login',
@@ -22,7 +23,10 @@ const routes = [
   {
     path: '/dashboard',
     name: 'dashboard',
-    component: DashboardView
+    component: DashboardView,
+    meta: {
+      requiresAuth :true
+    }
   },
   {
     path: '/about',
@@ -39,5 +43,29 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+/*router.beforeEach((to,_,next)=> {
+  console.log(`to: ${to.name} -- Auth Required? ${to.meta.requiresAuth}`)
+
+  const authStore = useAuthStore();
+
+  // Si la ruta a donde quiero ir necesita autenticación
+  // ... y no tengo el token, llévame a la pagina de login
+  if (to.meta.requiresAuth && !authStore.userToken) {
+    next({name: 'login'})
+  } else {
+    if (to.meta.requiresAdmin && !authStore.isAdmin) {
+    next({name: 'login'})
+    console.log("No eres admin")
+
+    } else {
+      next()
+
+    }
+  }
+})*/
+
+
+
 
 export default router

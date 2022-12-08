@@ -24,7 +24,7 @@
 
         <v-list nav dense class="black">
           <v-list-item-group
-            v-model="group"
+         
             active-class="white--text text--white text--center"
           >
             <v-list-item class="linkflex">

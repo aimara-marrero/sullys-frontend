@@ -10,7 +10,7 @@
       </v-row>
   
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer"   bottom temporary class=" orange ">
+     <!-- <v-navigation-drawer v-model="drawer"   bottom temporary class=" orange ">
       <v-list nav dense>
         <v-list-item-group v-model="group" active-class="white--text text--white text--center">
           <v-list-item class="linkflex">
@@ -32,7 +32,7 @@
           
         </v-list-item-group>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer>  -->
   </div>
 </template>
 
