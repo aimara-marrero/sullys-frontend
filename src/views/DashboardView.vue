@@ -63,12 +63,14 @@
         </v-list>
       </v-navigation-drawer>
     </v-card>
-    <PupilComponent v-if="test.docente"><v-icon>mdi-microsoft-windows</v-icon>docentes</PupilComponent>
+
+    <PupilComponent :users="users" v-if="test.docente"></PupilComponent>
     <div v-if="test.padre">padres</div>
     <div v-if="test.pupils">pupils</div>
     <div v-if="test.asignaturas">cursos</div>
     <div v-if="test.examenes">asignaturas</div>
   </div>
+
 </template>
   
 <script>

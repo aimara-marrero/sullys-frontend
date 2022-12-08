@@ -23,6 +23,7 @@
           Sort next column
         </v-btn>
       </div>
+     
     </div>
   </template>
 
@@ -126,6 +127,7 @@
             iron: '6%',
           },
         ],
+
       }
     },
     methods: {
@@ -138,6 +140,9 @@
         this.sortBy = this.headers[index].value
       },
     },
+    props: {
+        users: Array
+    }
   }
 </script>
 
