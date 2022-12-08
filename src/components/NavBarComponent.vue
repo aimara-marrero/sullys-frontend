@@ -7,12 +7,10 @@
       <v-img max-height="100" max-width="100" src="../assets/images/logo.png"></v-img>
       <v-row justify="end" class=" hidden-md-and-down">
         <v-btn rounded large>Acceder</v-btn>
-
       </v-row>
-
-
+  
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute bottom temporary class=" orange ">
+    <v-navigation-drawer v-model="drawer"   bottom temporary class=" orange ">
       <v-list nav dense>
         <v-list-item-group v-model="group" active-class="white--text text--white text--center">
           <v-list-item class="linkflex">

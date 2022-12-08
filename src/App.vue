@@ -3,8 +3,8 @@
     <NavBarComponent />
     <v-main>
       <router-view/>
+      <FooterComponent /> 
     </v-main>
-    <FooterComponent />
   </v-app>
 </template>
 

@@ -1,24 +1,17 @@
 <template>
   <div>
-    <LoginComponent/>
-  <!--<FooterComponent/> -->
-  <Sidebar/>
+    <LoginComponent />
   </div>
-  
 </template>
 
 <script>
-  import LoginComponent from '../components/LoginComponent.vue'
-  //import FooterComponent from '@/components/FooterComponent.vue';
-  import Sidebar from '../components/SidebarComponent.vue'
+import LoginComponent from "../components/LoginComponent.vue";
 
-  export default {
-    name: 'Home',
+export default {
+  name: "Login",
 
-    components: {
-      LoginComponent,
-      //FooterComponent
-      Sidebar
-    },
-  }
+  components: {
+    LoginComponent,
+  },
+};
 </script>

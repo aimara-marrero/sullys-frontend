@@ -1,17 +1,14 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" class="background">
     <v-main>
       <v-container fluid fill-height>
         <v-layout align-center justify-center>
           <v-flex xs11 sm8 md4 lg4>
             <v-card-text>
-              <v-form >
+              <v-form>
                 <v-row justify="space-around" class="mb-12">
                   <v-avatar size="140">
-                    <img
-                      src="../assets/images/schoolIcon.png"
-                      alt="John"
-                    />
+                    <img src="../assets/images/schoolIcon.png" alt="John" />
                   </v-avatar>
                 </v-row>
                 <v-text-field
@@ -40,7 +37,8 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-spacer
-                ><v-btn class="btn my-5" rounded large>Acceder</v-btn></v-spacer>
+                ><v-btn class="btn my-5" rounded large>Acceder</v-btn></v-spacer
+              >
             </v-card-actions>
           </v-flex>
         </v-layout>

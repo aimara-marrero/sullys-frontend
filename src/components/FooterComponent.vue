@@ -1,11 +1,21 @@
 <template>
   <v-footer dark padless>
     <v-flex>
-      <v-card flat tile color="black" class="white--text text-center">
+      <v-card flat tile color="black" class="white--text text-center flex">
         <v-card-text>
-          <v-img class="mx-auto" max-height="125" max-width="125" src="../assets/images/logo.png"></v-img>
+          <v-img
+            class="mx-auto"
+            max-height="125"
+            max-width="125"
+            src="../assets/images/logo.png"
+          ></v-img>
 
-          <v-btn v-for="icon in icons" :key="icon" class="mx-2 white--text" icon>
+          <v-btn
+            v-for="icon in icons"
+            :key="icon"
+            class="mx-2 white--text"
+            icon
+          >
             <v-icon size="24px">
               {{ icon }}
             </v-icon>
@@ -13,24 +23,35 @@
         </v-card-text>
 
         <v-list nav dense class="black">
-          <v-list-item-group v-model="group" active-class="white--text text--white text--center">
+          <v-list-item-group
+            v-model="group"
+            active-class="white--text text--white text--center"
+          >
             <v-list-item class="linkflex">
-              <RouterLink class="text-center white--text link" to="/about">Home</RouterLink>
+              <RouterLink class="text-center white--text link" to="/about"
+                >Home</RouterLink
+              >
             </v-list-item>
             <v-list-item class="linkflex">
-              <RouterLink class="text-center white--text link" to="/about">Login</RouterLink>
+              <RouterLink class="text-center white--text link" to="/about"
+                >Login</RouterLink
+              >
             </v-list-item>
             <v-list-item class="linkflex">
-              <RouterLink class="text-center white--text link" to="/about">Precios</RouterLink>
+              <RouterLink class="text-center white--text link" to="/about"
+                >Precios</RouterLink
+              >
             </v-list-item>
             <v-list-item class="linkflex">
-              <RouterLink class="text-center white--text link" to="/about">FAQ</RouterLink>
+              <RouterLink class="text-center white--text link" to="/about"
+                >FAQ</RouterLink
+              >
             </v-list-item>
             <v-list-item class="linkflex">
-              <RouterLink class="text-center white--text link" to="/about">Sobre Nosotros</RouterLink>
+              <RouterLink class="text-center white--text link" to="/about"
+                >Sobre Nosotros</RouterLink
+              >
             </v-list-item>
-
-
           </v-list-item-group>
         </v-list>
 
@@ -48,17 +69,15 @@
 export default {
   data: () => ({
     icons: [
-      'mdi-instagram',
-      'mdi-facebook',
-      'mdi-twitter',
-      'mdi-pinterest',
-      'mdi-gmail'
-
+      "mdi-instagram",
+      "mdi-facebook",
+      "mdi-twitter",
+      "mdi-pinterest",
+      "mdi-gmail",
     ],
   }),
-}
+};
 </script>
-
 
 <style lang="scss" scoped>
 .linkflex {
@@ -70,6 +89,5 @@ export default {
   text-decoration: none;
   text-align: center;
   font-size: 16px;
-
 }
 </style>
