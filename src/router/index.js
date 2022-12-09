@@ -1,10 +1,9 @@
+
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeViewVue from '../views/HomeView.vue'
-import LoginViewVue from '../views/LoginView.vue'
 import DashboardView from '../views/DashboardView.vue'
-import { useAuthStore } from '../stores/store'
 import FaqView from '../views/FaqView.vue'
+//import { useAuthStore } from '../stores/store.js'
 
 
 Vue.use(VueRouter)
@@ -18,7 +17,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginViewVue
+    component: () => import( '../views/LoginView.vue')
   },
   {
     path: '/dashboard',
@@ -44,9 +43,8 @@ const router = new VueRouter({
   routes
 })
 
-/*router.beforeEach((to,_,next)=> {
+/*router.beforeEach(async (to,_,next)=> {
   console.log(`to: ${to.name} -- Auth Required? ${to.meta.requiresAuth}`)
-
   const authStore = useAuthStore();
 
   // Si la ruta a donde quiero ir necesita autenticación
@@ -64,8 +62,5 @@ const router = new VueRouter({
     }
   }
 })*/
-
-
-
 
 export default router

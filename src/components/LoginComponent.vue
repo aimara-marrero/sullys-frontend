@@ -29,8 +29,11 @@
     </v-main>
   </v-app>
 </template>
+
 <script>
 import API from '../services/api.js';
+//import {useAuthStore} from '@/stores/store.js'
+
 export default {
   data() {
     return {
@@ -51,7 +54,7 @@ export default {
       ],
       */
       visible: false,
-
+      //store:useAuthStore()
     };
   },
   methods: {
@@ -61,7 +64,7 @@ export default {
         if (response.error) {
           alert('wrong username/password')
         } else {
-
+          //this.store.login(response)
           this.$router.push({ name: 'dashboard' })
         }
       } catch (error) {
