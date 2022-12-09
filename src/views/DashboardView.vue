@@ -25,7 +25,7 @@
               <v-icon>mdi-microsoft-windows</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>docente</v-list-item-title>
+              <v-list-item-title>Padres</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item @click="test4()" link>
@@ -33,7 +33,7 @@
               <v-icon>mdi-account</v-icon>
             </v-list-item-icon>
             <v-list-item-content>
-              <v-list-item-title>padre</v-list-item-title>
+              <v-list-item-title>Docentes</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item @click="test2()" link>

@@ -31,11 +31,51 @@ async function login(newUser) {
       return error
     }
   }
+  async function addUser(user) {
+    try {
+      const response = await API.post('/user', user)
+      return response.data
+  
+    } catch (error) {
+      return error
+    }
+  }
 
+  async function updateuser(id,user) {
+    try {
+      const response = await API.put(`/user/${id}`, user, /*{
+        headers: {
+          token: authStore.userToken
+        }
+      }*/)
+      return response.data
+  
+    } catch (error) {
+      return error
+    }
+  }
+
+  async function deleteUser(id) {
+    try {
+      //const authStore = useAuthStore();
+      const response = await API.delete(`/user/${id}`, /*{
+        headers: {
+          //token: localStorage.getItem('token')
+          token: authStore.userToken
+        }
+      }*/)
+      return response.data
+  
+    } catch (error) {
+      return error
+    }
+  }
 
 export default {
   signup,
   login,
-  getAllUser
-
+  getAllUser,
+  addUser,
+  updateuser,
+  deleteUser
 }
