@@ -1,10 +1,20 @@
 <template>
-  <v-data-table :headers="headers" :items="Usuarios" sort-by="calories" class="elevation-1">
+  <v-data-table :headers="headers" :items="Usuarios" :search="search" sort-by="calories" class="elevation-1">
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>Padres</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
+        <v-card-title>
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>
         <v-dialog v-model="dialog" max-width="800px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
@@ -87,6 +97,7 @@ export default {
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    search: '',
     headers: [
       {
         text: 'Nombre',
@@ -200,6 +211,7 @@ export default {
         await API.updateuser(this.idUsuario.id, this.editedItem)
         Object.assign(this.Usuarios[this.editedIndex], this.editedItem)
       } else {
+        //creamos un nuevo objeto para discriminar el campo _id del padre.
         const nuevoUser = {
           name: this.editedItem.name,
           lastName: this.editedItem.lastName,
